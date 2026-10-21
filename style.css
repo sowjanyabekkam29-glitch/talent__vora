@@ -1,0 +1,153 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff8e8;
+  color: #390d1b;
+}
+
+.auth {
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 28px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 5px 25px #390d1b20;
+  border-top: 5px solid #d4af37;
+}
+
+h1, h2 {
+  color: #800020;
+}
+
+.auth h1, .auth h2 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  margin: 6px 0 12px;
+}
+
+.password-box {
+  display: flex;
+  gap: 6px;
+}
+
+.password-box input {
+  flex: 1;
+  min-width: 0;
+}
+
+.password-box button {
+  padding: 10px;
+  background: #fff8e8;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.primary {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #800020;
+  color: #ffd700;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+a {
+  color: #800020;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+header {
+  padding: 18px;
+  background: #390d1b;
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+header h2 {
+  color: #ffd700;
+  margin: 0;
+}
+
+header a {
+  color: #ffd700;
+}
+
+.home {
+  max-width: 1100px;
+  padding: 22px;
+  margin: auto;
+}
+
+.home nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.video-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 3px 12px #390d1b15;
+}
+
+.thumbnail {
+  background: #390d1b;
+  color: #ffd700;
+  min-height: 145px;
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  border-radius: 8px;
+}
+
+.video-card button {
+  padding: 8px 12px;
+  background: #fff8e8;
+  border: 1px solid #d4af37;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .auth {
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .home {
+    padding: 14px;
+  }
+}
