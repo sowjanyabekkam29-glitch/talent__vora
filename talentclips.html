@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentVora | TalentClips</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    header a {
+      color: #ffd700;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 22px 16px;
+    }
+
+    h1 {
+      color: #800020;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .upload-link {
+      background: #800020;
+      color: #ffd700;
+      padding: 12px 17px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 5px 0 18px;
+    }
+
+    .filters button {
+      white-space: nowrap;
+      padding: 10px 16px;
+      border: 1px solid #d4af37;
+      border-radius: 22px;
+      background: white;
+      color: #800020;
+      cursor: pointer;
+    }
+
+    .filters button.active {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .clips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .clip-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px #390d1b12;
+    }
+
+    .clip-card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 13;
+      object-fit: cover;
+      background: #390d1b;
+    }
+
+    .clip-info {
+      padding: 14px;
+    }
+
+    .clip-info h3 {
+      margin: 0 0 8px;
+      color: #800020;
+    }
+
+    .creator {
+      color: #755b61;
+      font-size: 13px;
+    }
+
+    .clip-actions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .clip-actions button {
+      border: 1px solid #d4af37;
+      border-radius: 7px;
+      padding: 8px 10px;
+      background: #fff8e8;
+      color: #800020;
+      cursor: pointer;
+    }
+
+    .clip-actions button.liked {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .empty {
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      text-align: center;
+      color: #755b61;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #755b61;
+      line-height: 1.6;
+      margin-top: 22px;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 18px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 500px) {
+      .clips-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .clip-info {
+        padding: 10px;
+      }
+
+      .clip-info h3 {
+        font-size: 15px;
+      }
+
+      .clip-actions button {
+        font-size: 12px;
+        padding: 7px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>👑 TalentVora</h2>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html">Upload</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <div class="intro">
+      <div>
+        <h1>🎬 TalentClips</h1>
+        <p>Short videos. Big talent. One world.</p>
+      </div>
+
+      <a href="upload.html" class="upload-link">＋ Upload Talent</a>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="active" data-category="All">🌍 All</button>
+      <button data-category="Singing">🎤 Singing</button>
+      <button data-category="Dancing">💃 Dancing</button>
+      <button data-category="Art">🎨 Art</button>
+      <button data-category="Sports">🏏 Sports</button>
+      <button data-category="Acting">🎭 Acting</button>
+    </div>
+
+    <section class="clips-grid" id="clipsGrid"></section>
+
+    <p class="note">
+      Demo page: use the Upload page to select your own video.
+      Videos selected there are not automatically published here.
+      Real public clips require video storage and a backend.
+    </p>
+
+  </main>
+
+  <footer>
+    © 2026 TalentVora | Show Your Talent to the World 🌍
+  </footer>
+
+  <script>
+    const clips = [
+      {
+        id: "clip1",
+        title: "My Singing Talent",
+        creator: "Singer Star",
+        category: "Singing",
+        emoji: "🎤",
+        likes: 120
+      },
+      {
+        id: "clip2",
+        title: "Dance Performance",
+        creator: "Dance Queen",
+        category: "Dancing",
+        emoji: "💃",
+        likes: 95
+      },
+      {
+        id: "clip3",
+        title: "Creative Art",
+        creator: "Creative Artist",
+        category: "Art",
+        emoji: "🎨",
+        likes: 76
+      },
+      {
+        id: "clip4",
+        title: "Sports Skills",
+        creator: "Sports Star",
+        category: "Sports",
+        emoji: "🏏",
+        likes: 88
+      },
+      {
+        id: "clip5",
+        title: "Acting Moments",
+        creator: "New Creator",
+        category: "Acting",
+        emoji: "🎭",
+        likes: 64
+      },
+      {
+        id: "clip6",
+        title: "Music Practice",
+        creator: "Music Lover",
+        category: "Singing",
+        emoji: "🎵",
+        likes: 53
+      }
+    ];
+
+    const grid = document.getElementById("clipsGrid");
+    let activeCategory = "All";
+
+    function renderClips() {
+      grid.replaceChildren();
+
+      const filtered = clips.filter(clip =>
+        activeCategory === "All" ||
+        clip.category === activeCategory
+      );
+
+      if (filtered.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No clips in this category yet.";
+        grid.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(clip => {
+        const card = document.createElement("article");
+        card.className = "clip-card";
+
+        const video = document.createElement("video");
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = "none";
+        video.setAttribute("aria-label", clip.title);
+
+        // Demo placeholder. Replace with a video URL you own.
+        const placeholder = document.createElement("div");
+        placeholder.style.cssText =
+          "aspect-ratio:9/13;background:#390d1b;color:#ffd700;" +
+          "display:grid;place-items:center;font-size:60px;";
+        placeholder.textContent = clip.emoji;
+
+        const info = document.createElement("div");
+        info.className = "clip-info";
+
+        const title = document.createElement("h3");
+        title.textContent = clip.title;
+
+        const creator = document.createElement("p");
+        creator.className = "creator";
+        creator.textContent = "@" + clip.creator;
+
+        const category = document.createElement("p");
+        category.className = "creator";
+        category.textContent = clip.category;
+
+        const actions = document.createElement("div");
+        actions.className = "clip-actions";
+
+        const likeButton = document.createElement("button");
+        likeButton.type = "button";
+        likeButton.textContent = "❤️ " + clip.likes;
+
+        likeButton.addEventListener("click", () => {
+          clip.likes++;
+          likeButton.textContent = "❤️ " + clip.likes;
+          likeButton.classList.add("liked");
+        });
+
+        const shareButton = document.createElement("button");
+        shareButton.type = "button";
+        shareButton.textContent = "↗ Share";
+
+        shareButton.addEventListener("click", async () => {
+          const shareText = clip.title + " on TalentVora";
+
+          if (navigator.share) {
+            try {
+              await navigator.share({ title: clip.title, text: shareText });
+            } catch (error) {
+              // The user may cancel the share sheet.
+            }
+          } else if (navigator.clipboard) {
+            try {
+              await navigator.clipboard.writeText(shareText);
+              shareButton.textContent = "✓ Copied";
+            } catch (error) {
+              alert(shareText);
+            }
+          } else {
+            alert(shareText);
+          }
+        });
+
+        actions.append(likeButton, shareButton);
+        info.append(title, creator, category, actions);
+        card.append(placeholder, info);
+        grid.appendChild(card);
+      });
+    }
+
+    document.querySelectorAll("#filters button").forEach(button => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.category;
+
+        document.querySelectorAll("#filters button")
+          .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+        renderClips();
+      });
+    });
+
+    renderClips();
+  </script>
+
+</body>
+</html>
