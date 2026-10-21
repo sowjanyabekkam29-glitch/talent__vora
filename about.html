@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      color: #ffd700;
+      text-align: center;
+      padding: 55px 20px;
+      border-radius: 18px;
+    }
+
+    .hero .crown {
+      font-size: 55px;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #fff8e8;
+    }
+
+    .section {
+      margin-top: 35px;
+    }
+
+    .section h2 {
+      color: #800020;
+      margin-bottom: 15px;
+    }
+
+    .section p {
+      color: #59434a;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 23px;
+      border-radius: 13px;
+      border-top: 4px solid #d4af37;
+      box-shadow: 0 4px 14px #390d1b12;
+    }
+
+    .card .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #800020;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+    }
+
+    .mission {
+      margin-top: 30px;
+      background: #fff0c2;
+      border-left: 5px solid #d4af37;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .mission h2 {
+      color: #800020;
+      margin-bottom: 10px;
+    }
+
+    .cta {
+      margin-top: 35px;
+      background: #390d1b;
+      color: #ffd700;
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 15px;
+    }
+
+    .cta h2 {
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #ffd700;
+      color: #390d1b;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      text-align: center;
+      background: #390d1b;
+      color: #ffd700;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .hero {
+        padding: 35px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="search.html">Search</a>
+      <a href="talentclips.html">Talent Clips</a>
+      <a href="profile.html">Profile</a>
+      <a href="help.html">Help</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <div class="crown">👑</div>
+      <h2>About TalentVora</h2>
+      <p>
+        A place where creativity meets opportunity.
+        Discover talents, share your skills, and inspire the world.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>🌍 Who We Are</h2>
+      <p>
+        TalentVora is a talent-sharing website concept designed to help
+        people showcase their creativity and discover the skills of others.
+        Whether you love singing, dancing, art, sports, photography, or
+        coding, your talent deserves a place to shine.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>✨ What You Can Discover</h2>
+
+      <div class="cards">
+
+        <article class="card">
+          <div class="icon">🎬</div>
+          <h3>Talent Videos</h3>
+          <p>Explore creative video ideas and performances across categories.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎨</div>
+          <h3>Creative Skills</h3>
+          <p>Celebrate artwork, photography, music, dance, and other skills.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">👥</div>
+          <h3>Creator Profiles</h3>
+          <p>Build a profile to introduce your interests and talents.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">💛</div>
+          <h3>Positive Community</h3>
+          <p>Encourage creators through supportive and respectful feedback.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="mission">
+      <h2>🎯 Our Mission</h2>
+      <p>
+        Our vision is to make talent discovery more accessible to people
+        everywhere. We want creativity, learning, and encouragement to
+        help people share what they love doing.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>💎 Our Values</h2>
+
+      <div class="cards">
+
+        <article class="card">
+          <div class="icon">🌈</div>
+          <h3>Inclusivity</h3>
+          <p>Every person should have the opportunity to express creativity.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤝</div>
+          <h3>Respect</h3>
+          <p>Support a friendly environment for creators and learners.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🚀</div>
+          <h3>Growth</h3>
+          <p>Inspire people to practise, learn, and develop new skills.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Your Talent. Your Story. Your World.</h2>
+      <p>Ready to explore creativity and share what you love?</p>
+      <a href="register.html">Join TalentVora</a>
+      <a href="explore.html" style="margin-left: 8px;">Explore Talents</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora | Every Talent Deserves a Chance ✨</p>
+    <p style="margin-top: 10px;">
+      <a href="about.html">About</a>
+      <a href="help.html">Help Center</a>
+      <a href="search.html">Search</a>
+    </p>
+  </footer>
+
+</body>
+</html>
