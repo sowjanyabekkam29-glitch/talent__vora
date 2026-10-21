@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      padding: 35px 20px;
+      border-radius: 15px;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: white;
+      line-height: 1.6;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid #d4af37;
+      border-radius: 9px;
+      font-size: 16px;
+      outline-color: #800020;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+
+    .search-btn {
+      background: #800020;
+      color: #ffd700;
+      border: none;
+      padding: 13px 20px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 25px;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 1px solid #d4af37;
+      color: #800020;
+      padding: 10px 16px;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .results-title {
+      color: #800020;
+      margin-bottom: 17px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px #390d1b16;
+      border-bottom: 3px solid #d4af37;
+    }
+
+    .thumbnail {
+      height: 145px;
+      background: #390d1b;
+      color: #ffd700;
+      display: grid;
+      place-items: center;
+      font-size: 48px;
+    }
+
+    .result-content {
+      padding: 16px;
+    }
+
+    .result-content h3 {
+      color: #800020;
+      margin-bottom: 8px;
+    }
+
+    .result-content p {
+      color: #66545a;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 9px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fff1c2;
+      color: #800020;
+      border-radius: 15px;
+      padding: 6px 10px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .open-btn {
+      display: block;
+      width: 100%;
+      background: #800020;
+      color: #ffd700;
+      border: none;
+      padding: 11px;
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 30px 10px;
+      color: #800020;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 20px;
+      margin-top: 35px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="explore.html">Explore</a>
+      <a href="talentclips.html">Talent Clips</a>
+      <a href="upload.html">Upload</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>🔍 Search TalentVora</h2>
+      <p>Find inspiring creators, videos, and amazing talents.</p>
+    </section>
+
+    <form class="search-box" id="searchForm">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search videos, creators or talents..."
+        aria-label="Search TalentVora"
+      >
+      <button type="submit" class="search-btn">🔍 Search</button>
+    </form>
+
+    <div class="filters">
+      <button class="filter-btn active" data-type="All">All</button>
+      <button class="filter-btn" data-type="Video">🎬 Videos</button>
+      <button class="filter-btn" data-type="Creator">👤 Creators</button>
+      <button class="filter-btn" data-type="Singing">🎤 Singing</button>
+      <button class="filter-btn" data-type="Dancing">💃 Dancing</button>
+      <button class="filter-btn" data-type="Art">🎨 Art</button>
+      <button class="filter-btn" data-type="Coding">💻 Coding</button>
+    </div>
+
+    <h2 class="results-title" id="resultsTitle">✨ Explore Results</h2>
+
+    <section class="results-grid" id="resultsGrid">
+
+      <article class="result-card"
+        data-type="Video"
+        data-search="beautiful singing music ananya song">
+        <div class="thumbnail">🎤</div>
+        <div class="result-content">
+          <h3>Beautiful Singing</h3>
+          <p>Creator: Ananya</p>
+          <span class="tag">Singing · Video</span>
+          <button class="open-btn" data-message="This is a sample video result. Add a real video page to play it.">
+            View Video
+          </button>
+        </div>
+      </article>
+
+      <article class="result-card"
+        data-type="Creator"
+        data-search="ananya singer music india">
+        <div class="thumbnail">👩‍🎤</div>
+        <div class="result-content">
+          <h3>Ananya</h3>
+          <p>Creator from India who enjoys singing.</p>
+          <span class="tag">Creator · Singing</span>
+          <button class="open-btn" data-link="explore.html">
+            View Creator
+          </button>
+        </div>
+      </article>
+
+      <article class="result-card"
+        data-type="Video"
+        data-search="dance performance rahul dancing">
+        <div class="thumbnail">💃</div>
+        <div class="result-content">
+          <h3>Dance Performance</h3>
+          <p>Creator: Rahul</p>
+          <span class="tag">Dancing · Video</span>
+          <button class="open-btn" data-message="This is a sample video result. Add a real video page to play it.">
+            View Video
+          </button>
+        </div>
+      </article>
+
+      <article class="result-card"
+        data-type="Art"
+        data-search="creative drawing painting maya artist">
+        <div class="thumbnail">🎨</div>
+        <div class="result-content">
+          <h3>Creative Drawing</h3>
+          <p>Creator: Maya</p>
+          <span class="tag">Art</span>
+          <button class="open-btn" data-link="explore.html">
+            Explore Art
+          </button>
+        </div>
+      </article>
+
+      <article class="result-card"
+        data-type="Coding"
+        data-search="website development html javascript arjun">
+        <div class="thumbnail">💻</div>
+        <div class="result-content">
+          <h3>Website Development</h3>
+          <p>Creator: Arjun</p>
+          <span class="tag">Coding</span>
+          <button class="open-btn" data-link="explore.html">
+            Explore Coding
+          </button>
+        </div>
+      </article>
+
+      <article class="result-card"
+        data-type="Video"
+        data-search="cricket sports practice match">
+        <div class="thumbnail">🏏</div>
+        <div class="result-content">
+          <h3>Cricket Practice</h3>
+          <p>Talent, teamwork, and sports.</p>
+          <span class="tag">Sports · Video</span>
+          <button class="open-btn" data-message="This is a sample video result. Add a real video page to play it.">
+            View Video
+          </button>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="no-results" id="noResults">
+      <h3>😕 No results found</h3>
+      <p>Try a different keyword or choose another category.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora | Discover Your Talent ✨</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const searchForm = document.getElementById("searchForm");
+    const cards = document.querySelectorAll(".result-card");
+    const filters = document.querySelectorAll(".filter-btn");
+    const noResults = document.getElementById("noResults");
+    const resultsTitle = document.getElementById("resultsTitle");
+
+    let selectedType = "All";
+
+    function filterResults() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const searchableText =
+          (card.dataset.search + " " + card.textContent).toLowerCase();
+
+        const matchesText = searchableText.includes(query);
+
+        const matchesType =
+          selectedType === "All" ||
+          card.dataset.type === selectedType ||
+          card.dataset.search.toLowerCase().includes(selectedType.toLowerCase());
+
+        const visible = matchesText && matchesType;
+
+        card.style.display = visible ? "" : "none";
+
+        if (visible) visibleCount++;
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+
+      resultsTitle.textContent = query
+        ? "🔍 Search Results (" + visibleCount + ")"
+        : "✨ Explore Results";
+    }
+
+    searchForm.addEventListener("submit", event => {
+      event.preventDefault();
+      filterResults();
+    });
+
+    searchInput.addEventListener("input", filterResults);
+
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedType = button.dataset.type;
+
+        filters.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+
+        filterResults();
+      });
+    });
+
+    document.querySelectorAll(".open-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        if (button.dataset.link) {
+          window.location.href = button.dataset.link;
+        } else if (button.dataset.message) {
+          alert(button.dataset.message);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
