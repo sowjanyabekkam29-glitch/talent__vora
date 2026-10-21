@@ -1,268 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TalentVora | Creator Dashboard</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff8e8;
-      color: #390d1b;
-    }
-
-    header {
-      background: #390d1b;
-      color: #ffd700;
-      padding: 18px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    header h2 {
-      margin: 0;
-    }
-
-    header a {
-      color: #ffd700;
-      text-decoration: none;
-      margin-left: 14px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 25px 18px;
-    }
-
-    .welcome {
-      background: linear-gradient(135deg, #800020, #390d1b);
-      color: #ffd700;
-      padding: 28px;
-      border-radius: 16px;
-      margin-bottom: 25px;
-    }
-
-    .welcome h1 {
-      margin-top: 0;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #ffd700;
-      color: #390d1b;
-      padding: 12px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin: 5px 5px 5px 0;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 22px 15px;
-      border-radius: 13px;
-      border-bottom: 4px solid #d4af37;
-      box-shadow: 0 4px 14px #390d1b12;
-    }
-
-    .stat-card .emoji {
-      font-size: 28px;
-    }
-
-    .stat-card h2 {
-      color: #800020;
-      margin: 10px 0 5px;
-    }
-
-    .section {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 14px #390d1b10;
-    }
-
-    .section h2 {
-      color: #800020;
-      margin-top: 0;
-    }
-
-    .quick-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-    }
-
-    .quick-links a {
-      background: #fff8e8;
-      border: 1px solid #d4af37;
-      padding: 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #800020;
-      font-weight: bold;
-    }
-
-    .quick-links a:hover {
-      background: #ffe9a6;
-    }
-
-    .notice {
-      color: #755b61;
-      font-size: 13px;
-    }
-
-    footer {
-      background: #390d1b;
-      color: #ffd700;
-      text-align: center;
-      padding: 18px;
-      margin-top: 25px;
-    }
-
-    @media (max-width: 500px) {
-      header {
-        padding: 16px;
-      }
-
-      header a {
-        margin-left: 0;
-        margin-right: 10px;
-      }
-
-      .welcome {
-        padding: 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard - TalentVora</title>
+<style>
+:root{--ink:#1d2a2f;--paper:#f4f6f3;--card:#fff;--accent:#0f766e;--line:#d5dcd8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding:1rem}
+.box{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem}
+h1{margin:0 0 .25rem;font-size:1.6rem}
+p.sub{margin:0 0 1.5rem;color:#51636a}
+label{display:block;margin:0 0 1rem;font-size:.9rem;font-weight:600}
+input{display:block;width:100%;margin-top:.35rem;padding:.7rem;border:1px solid var(--line);border-radius:8px;font:inherit}
+input:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{width:100%;padding:.8rem;border:0;border-radius:8px;background:var(--accent);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.msg{min-height:1.3rem;margin:.75rem 0 0;font-size:.9rem}
+.msg.error{color:#b42318}.msg.ok{color:#067647}
+.alt{margin-top:1rem;text-align:center;font-size:.9rem}
+.alt a{color:var(--accent);font-weight:600}
+</style>
 </head>
-
 <body>
-
-  <header>
-    <h2>👑 TalentVora</h2>
-
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="profile.html">Profile</a>
-      <a href="upload.html">Upload</a>
-      <a href="appreciation.html">🏆 Appreciation</a>
-      <a href="login.html" onclick="logout()">Logout</a>
-    </nav>
-  </header>
-
-  <main class="container">
-
-    <section class="welcome">
-      <h1>Welcome, <span id="creatorName">Creator</span>! ✨</h1>
-      <p>Your talent deserves to be seen by the world.</p>
-      <a class="btn" href="upload.html">＋ Upload Your Talent</a>
-      <a class="btn" href="home.html">Explore Videos</a>
-    </section>
-
-    <h2>📊 Your Creator Overview</h2>
-
-    <section class="stats">
-      <div class="stat-card">
-        <div class="emoji">❤️</div>
-        <h2 id="likes">0</h2>
-        <p>Total Likes</p>
-      </div>
-
-      <div class="stat-card">
-        <div class="emoji">💬</div>
-        <h2 id="comments">0</h2>
-        <p>Comments</p>
-      </div>
-
-      <div class="stat-card">
-        <div class="emoji">🔁</div>
-        <h2 id="shares">0</h2>
-        <p>Shares</p>
-      </div>
-
-      <div class="stat-card">
-        <div class="emoji">🌟</div>
-        <h2 id="supporters">0</h2>
-        <p>Supporters</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>🚀 Quick Actions</h2>
-
-      <div class="quick-links">
-        <a href="profile.html">👤 Edit My Profile</a>
-        <a href="upload.html">🎬 Upload a Video</a>
-        <a href="home.html">▶️ Watch Videos</a>
-        <a href="explore.html">🔍 Explore Talents</a>
-        <a href="talentclips.html">📱 TalentClips</a>
-        <a href="supporters.html">🌟 My Supporters</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>💡 Creator Tip</h2>
-      <p>
-        Share your skills regularly, create original content,
-        and encourage viewers to support your talent.
-      </p>
-      <p class="notice">
-        Dashboard statistics are demo values until real video,
-        likes, comments, and supporter data are connected.
-      </p>
-    </section>
-
+  <main class="box">
+    <h1 id="welcome">Loading...</h1>
+    <p class="sub" id="email"></p>
+    <button onclick="handleLogout()">Log out</button>
   </main>
 
-  <footer>
-    © 2026 TalentVora | Show Your Talent to the World 🌍
-  </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="supabase-auth.js"></script>
   <script>
-    const user = JSON.parse(localStorage.getItem("tvUser") || "null");
-
-    if (user && user.name) {
-      document.getElementById("creatorName").textContent = user.name;
-    }
-
-    function logout() {
-      localStorage.removeItem("tvUser");
-    }
-
-    // Demo statistics: replace with real data when the backend is ready.
-    const stats = {
-      likes: 0,
-      comments: 0,
-      shares: 0,
-      supporters: 0
-    };
-
-    document.getElementById("likes").textContent = stats.likes;
-    document.getElementById("comments").textContent = stats.comments;
-    document.getElementById("shares").textContent = stats.shares;
-    document.getElementById("supporters").textContent = stats.supporters;
+    requireLogin().then(async (session) => {
+      if (!session) return;
+      const { data } = await db.from("profiles").select("name").eq("id", session.user.id).maybeSingle();
+      document.getElementById("welcome").textContent = "Welcome, " + (data?.name || "there");
+      document.getElementById("email").textContent = session.user.email;
+    });
   </script>
-
 </body>
 </html>
