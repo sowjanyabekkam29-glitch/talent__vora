@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentVora | Notifications</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    header a {
+      color: #ffd700;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 16px;
+    }
+
+    h1, h2 {
+      color: #800020;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .top button {
+      background: #800020;
+      color: #ffd700;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 20px 0;
+    }
+
+    .filters button {
+      border: 1px solid #d4af37;
+      background: white;
+      color: #800020;
+      border-radius: 20px;
+      padding: 9px 15px;
+      cursor: pointer;
+    }
+
+    .filters button.active {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .notification {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: white;
+      border: 1px solid #f0e1bd;
+      border-radius: 12px;
+      padding: 17px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 10px #390d1b0b;
+    }
+
+    .notification.unread {
+      border-left: 5px solid #d4af37;
+      background: #fffdf6;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: #fff0c2;
+      border-radius: 50%;
+      font-size: 23px;
+      flex-shrink: 0;
+    }
+
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .content p {
+      margin: 3px 0 8px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .content small {
+      color: #755b61;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .actions button {
+      padding: 7px 10px;
+      border: 1px solid #d4af37;
+      background: #fff8e8;
+      color: #800020;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .empty {
+      background: white;
+      border-radius: 12px;
+      text-align: center;
+      padding: 35px 15px;
+      color: #755b61;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: #390d1b;
+      color: #ffd700;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 12px;
+      }
+
+      .notification {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>👑 TalentVora</h2>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <div class="top">
+      <div>
+        <h1>🔔 Notifications</h1>
+        <p>Stay updated with your talent community.</p>
+      </div>
+
+      <button type="button" id="markAll">
+        Mark all as read
+      </button>
+    </div>
+
+    <div class="filters" id="filters">
+      <button type="button" class="active" data-filter="all">All</button>
+      <button type="button" data-filter="like">❤️ Likes</button>
+      <button type="button" data-filter="comment">💬 Comments</button>
+      <button type="button" data-filter="follow">👥 Followers</button>
+      <button type="button" data-filter="support">🌟 Supporters</button>
+      <button type="button" data-filter="share">🔁 Shares</button>
+    </div>
+
+    <p id="unreadCount">Unread: 0</p>
+
+    <section id="notificationList" aria-live="polite"></section>
+
+  </main>
+
+  <footer>
+    © 2026 TalentVora | Celebrate Every Talent 🌍
+  </footer>
+
+  <script>
+    const storageKey = "tvNotifications";
+
+    const icons = {
+      like: "❤️",
+      comment: "💬",
+      follow: "👥",
+      support: "🌟",
+      share: "🔁"
+    };
+
+    const initialNotifications = [
+      {
+        id: 1,
+        type: "like",
+        text: "Someone liked your talent video.",
+        time: "Demo notification",
+        unread: true
+      },
+      {
+        id: 2,
+        type: "comment",
+        text: "A creator commented on your performance.",
+        time: "Demo notification",
+        unread: true
+      },
+      {
+        id: 3,
+        type: "follow",
+        text: "You have a new follower in your talent community.",
+        time: "Demo notification",
+        unread: true
+      },
+      {
+        id: 4,
+        type: "support",
+        text: "Someone started supporting your talent.",
+        time: "Demo notification",
+        unread: false
+      },
+      {
+        id: 5,
+        type: "share",
+        text: "Your talent video was shared.",
+        time: "Demo notification",
+        unread: false
+      }
+    ];
+
+    let notifications = loadNotifications();
+    let activeFilter = "all";
+
+    function loadNotifications() {
+      try {
+        const saved = localStorage.getItem(storageKey);
+
+        if (saved !== null) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) return parsed;
+        }
+      } catch (error) {
+        console.log("Could not load notifications.");
+      }
+
+      return initialNotifications.map(item => ({ ...item }));
+    }
+
+    function saveNotifications() {
+      try {
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify(notifications)
+        );
+      } catch (error) {
+        alert("Unable to save changes in this browser.");
+      }
+    }
+
+    function renderNotifications() {
+      const list = document.getElementById("notificationList");
+      list.replaceChildren();
+
+      const unread = notifications.filter(item => item.unread).length;
+      document.getElementById("unreadCount").textContent =
+        "Unread: " + unread;
+
+      const filtered = notifications.filter(item =>
+        activeFilter === "all" || item.type === activeFilter
+      );
+
+      if (filtered.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No notifications in this category.";
+        list.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement("article");
+        card.className =
+          "notification" + (item.unread ? " unread" : "");
+
+        const icon = document.createElement("div");
+        icon.className = "icon";
+        icon.textContent = icons[item.type] || "🔔";
+
+        const content = document.createElement("div");
+        content.className = "content";
+
+        const title = document.createElement("strong");
+        title.textContent = {
+          like: "New Like",
+          comment: "New Comment",
+          follow: "New Follower",
+          support: "New Supporter",
+          share: "Video Shared"
+        }[item.type] || "Notification";
+
+        const text = document.createElement("p");
+        text.textContent = item.text;
+
+        const time = document.createElement("small");
+        time.textContent = item.time;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const readButton = document.createElement("button");
+        readButton.type = "button";
+        readButton.textContent = item.unread ? "Mark as read" : "Read";
+
+        readButton.addEventListener("click", () => {
+          item.unread = false;
+          saveNotifications();
+          renderNotifications();
+        });
+
+        actions.appendChild(readButton);
+
+        content.append(title, text, time, actions);
+        card.append(icon, content);
+        list.appendChild(card);
+      });
+    }
+
+    document.querySelectorAll("#filters button").forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+
+        document.querySelectorAll("#filters button")
+          .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+        renderNotifications();
+      });
+    });
+
+    document.getElementById("markAll").addEventListener("click", () => {
+      notifications.forEach(item => {
+        item.unread = false;
+      });
+
+      saveNotifications();
+      renderNotifications();
+    });
+
+    saveNotifications();
+    renderNotifications();
+  </script>
+
+</body>
+</html>
