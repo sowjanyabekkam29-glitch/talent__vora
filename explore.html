@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Talents | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      color: #ffd700;
+      padding: 35px 20px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #fff8e8;
+      line-height: 1.6;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #d4af37;
+      border-radius: 9px;
+      font-size: 15px;
+      outline-color: #800020;
+    }
+
+    button {
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .search-btn {
+      background: #800020;
+      color: #ffd700;
+      border: none;
+      padding: 12px 18px;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .category-btn {
+      background: white;
+      border: 1px solid #d4af37;
+      color: #800020;
+      padding: 10px 15px;
+    }
+
+    .category-btn.active,
+    .category-btn:hover {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .section-title {
+      margin-bottom: 18px;
+      color: #800020;
+    }
+
+    .creator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .creator-card {
+      background: white;
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: 0 4px 15px #390d1b16;
+      border-bottom: 4px solid #d4af37;
+      transition: transform 0.2s;
+    }
+
+    .creator-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .avatar {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      margin: 0 auto 13px;
+      background: #390d1b;
+      color: #ffd700;
+      display: grid;
+      place-items: center;
+      font-size: 35px;
+      border: 3px solid #d4af37;
+    }
+
+    .creator-card h3 {
+      color: #800020;
+      margin-bottom: 8px;
+    }
+
+    .creator-card p {
+      color: #66545a;
+      font-size: 14px;
+      margin: 7px 0;
+      line-height: 1.5;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fff1c2;
+      color: #800020;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin: 6px 0 12px;
+    }
+
+    .follow-btn {
+      display: block;
+      width: 100%;
+      padding: 11px;
+      background: #800020;
+      color: #ffd700;
+      border: none;
+      margin-top: 8px;
+    }
+
+    .follow-btn.following {
+      background: #fff1c2;
+      color: #800020;
+      border: 1px solid #d4af37;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: #800020;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 20px;
+      margin-top: 35px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-btn {
+        padding: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="talentclips.html">Talent Clips</a>
+      <a href="upload.html">Upload</a>
+      <a href="profile.html">Profile</a>
+      <a href="messages.html">Messages</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>🌍 Explore Amazing Talents</h2>
+      <p>Discover creators, find inspiration, and connect with talented people.</p>
+    </section>
+
+    <div class="search-box">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search name, talent or country..."
+        aria-label="Search creators"
+      >
+      <button class="search-btn" onclick="searchCreators()">
+        🔍 Search
+      </button>
+    </div>
+
+    <div class="categories" id="categories">
+      <button class="category-btn active" data-category="All">All Talents</button>
+      <button class="category-btn" data-category="Singing">🎤 Singing</button>
+      <button class="category-btn" data-category="Dancing">💃 Dancing</button>
+      <button class="category-btn" data-category="Art">🎨 Art</button>
+      <button class="category-btn" data-category="Coding">💻 Coding</button>
+      <button class="category-btn" data-category="Sports">🏏 Sports</button>
+      <button class="category-btn" data-category="Photography">📸 Photography</button>
+    </div>
+
+    <h2 class="section-title">✨ Creators to Discover</h2>
+
+    <section class="creator-grid" id="creatorGrid">
+
+      <article class="creator-card"
+        data-name="ananya singing india"
+        data-category="Singing">
+        <div class="avatar">🎤</div>
+        <h3>Ananya</h3>
+        <p>📍 India</p>
+        <span class="tag">Singing</span>
+        <p>Loves music and sharing songs.</p>
+        <button class="follow-btn" data-user="Ananya">＋ Follow</button>
+      </article>
+
+      <article class="creator-card"
+        data-name="rahul dancing india"
+        data-category="Dancing">
+        <div class="avatar">💃</div>
+        <h3>Rahul</h3>
+        <p>📍 India</p>
+        <span class="tag">Dancing</span>
+        <p>Enjoys dance and creative performances.</p>
+        <button class="follow-btn" data-user="Rahul">＋ Follow</button>
+      </article>
+
+      <article class="creator-card"
+        data-name="maya art united states"
+        data-category="Art">
+        <div class="avatar">🎨</div>
+        <h3>Maya</h3>
+        <p>📍 United States</p>
+        <span class="tag">Art</span>
+        <p>Creates drawings and colorful artwork.</p>
+        <button class="follow-btn" data-user="Maya">＋ Follow</button>
+      </article>
+
+      <article class="creator-card"
+        data-name="arjun coding india"
+        data-category="Coding">
+        <div class="avatar">💻</div>
+        <h3>Arjun</h3>
+        <p>📍 India</p>
+        <span class="tag">Coding</span>
+        <p>Builds websites and creative projects.</p>
+        <button class="follow-btn" data-user="Arjun">＋ Follow</button>
+      </article>
+
+      <article class="creator-card"
+        data-name="liam sports united kingdom"
+        data-category="Sports">
+        <div class="avatar">🏏</div>
+        <h3>Liam</h3>
+        <p>📍 United Kingdom</p>
+        <span class="tag">Sports</span>
+        <p>Loves sports, practice, and teamwork.</p>
+        <button class="follow-btn" data-user="Liam">＋ Follow</button>
+      </article>
+
+      <article class="creator-card"
+        data-name="sophia photography canada"
+        data-category="Photography">
+        <div class="avatar">📸</div>
+        <h3>Sophia</h3>
+        <p>📍 Canada</p>
+        <span class="tag">Photography</span>
+        <p>Captures nature and beautiful moments.</p>
+        <button class="follow-btn" data-user="Sophia">＋ Follow</button>
+      </article>
+
+    </section>
+
+    <p class="empty" id="emptyMessage">
+      No creators found. Try another name or category.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora | Every Talent Deserves a Chance ✨</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".creator-card");
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    let selectedCategory = "All";
+
+    function filterCreators() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const searchableText =
+          (card.dataset.name + " " + card.textContent).toLowerCase();
+
+        const matchesSearch = searchableText.includes(query);
+
+        const matchesCategory =
+          selectedCategory === "All" ||
+          card.dataset.category === selectedCategory;
+
+        const showCard = matchesSearch && matchesCategory;
+
+        card.style.display = showCard ? "" : "none";
+
+        if (showCard) visibleCount++;
+      });
+
+      emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    function searchCreators() {
+      filterCreators();
+    }
+
+    searchInput.addEventListener("input", filterCreators);
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category;
+
+        categoryButtons.forEach(item => {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        filterCreators();
+      });
+    });
+
+    // Demo follow system: saved in this browser only.
+    let followedUsers = JSON.parse(
+      localStorage.getItem("tvFollowedUsers") || "[]"
+    );
+
+    function updateFollowButtons() {
+      document.querySelectorAll(".follow-btn").forEach(button => {
+        const user = button.dataset.user;
+        const following = followedUsers.includes(user);
+
+        button.textContent = following ? "✓ Following" : "＋ Follow";
+        button.classList.toggle("following", following);
+      });
+    }
+
+    document.querySelectorAll(".follow-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const user = button.dataset.user;
+
+        if (followedUsers.includes(user)) {
+          followedUsers = followedUsers.filter(name => name !== user);
+        } else {
+          followedUsers.push(user);
+        }
+
+        localStorage.setItem(
+          "tvFollowedUsers",
+          JSON.stringify(followedUsers)
+        );
+
+        updateFollowButtons();
+      });
+    });
+
+    updateFollowButtons();
+  </script>
+
+</body>
+</html>
