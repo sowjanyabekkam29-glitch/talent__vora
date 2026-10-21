@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentVora | Analytics</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    header a {
+      color: #ffd700;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 16px;
+    }
+
+    h1, h2, h3 {
+      color: #800020;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .period {
+      padding: 10px;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      background: white;
+      color: #390d1b;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: 13px;
+      border-bottom: 4px solid #d4af37;
+      box-shadow: 0 4px 14px #390d1b10;
+    }
+
+    .stat-card .emoji {
+      font-size: 28px;
+    }
+
+    .stat-card h2 {
+      font-size: 27px;
+      margin: 12px 0 5px;
+    }
+
+    .stat-card p {
+      color: #755b61;
+      margin-bottom: 0;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 14px #390d1b10;
+    }
+
+    .chart {
+      height: 230px;
+      display: flex;
+      align-items: end;
+      justify-content: space-around;
+      gap: 12px;
+      padding: 20px 5px 0;
+      border-bottom: 1px solid #e8d8ae;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 54px,
+        #f3e8d1 55px
+      );
+    }
+
+    .bar-group {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: end;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bar {
+      width: min(45px, 75%);
+      min-height: 5px;
+      background: linear-gradient(#d4af37, #800020);
+      border-radius: 7px 7px 0 0;
+    }
+
+    .bar-label {
+      font-size: 12px;
+      padding: 8px 0;
+      color: #755b61;
+    }
+
+    .legend {
+      margin-top: 15px;
+      color: #755b61;
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 10px;
+      border-bottom: 1px solid #eee0bd;
+    }
+
+    th {
+      color: #800020;
+      background: #fff8e8;
+    }
+
+    .empty {
+      padding: 20px;
+      text-align: center;
+      color: #755b61;
+      background: #fff8e8;
+      border-radius: 8px;
+    }
+
+    .note {
+      color: #755b61;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: #390d1b;
+      color: #ffd700;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 12px;
+      }
+
+      .panel {
+        padding: 15px;
+      }
+
+      .chart {
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>👑 TalentVora</h2>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <div class="intro">
+      <div>
+        <h1>📊 Creator Analytics</h1>
+        <p>Understand how people engage with your talent.</p>
+      </div>
+
+      <select id="period" class="period" aria-label="Analytics period">
+        <option value="7">Last 7 days</option>
+        <option value="30">Last 30 days</option>
+        <option value="90">Last 90 days</option>
+      </select>
+    </div>
+
+    <section class="stats">
+      <div class="stat-card">
+        <div class="emoji">👁️</div>
+        <h2 id="views">1,250</h2>
+        <p>Total Views</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="emoji">❤️</div>
+        <h2 id="likes">340</h2>
+        <p>Total Likes</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="emoji">💬</div>
+        <h2 id="comments">86</h2>
+        <p>Total Comments</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="emoji">🔁</div>
+        <h2 id="shares">42</h2>
+        <p>Total Shares</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="emoji">🌟</div>
+        <h2 id="supporters">75</h2>
+        <p>Supporters</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>📈 Views Overview</h2>
+      <p>Example view activity across the selected period.</p>
+
+      <div class="chart" id="chart">
+        <div class="bar-group">
+          <div class="bar" style="height:35%"></div>
+          <span class="bar-label">Mon</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:55%"></div>
+          <span class="bar-label">Tue</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:45%"></div>
+          <span class="bar-label">Wed</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:75%"></div>
+          <span class="bar-label">Thu</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:60%"></div>
+          <span class="bar-label">Fri</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:90%"></div>
+          <span class="bar-label">Sat</span>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar" style="height:70%"></div>
+          <span class="bar-label">Sun</span>
+        </div>
+      </div>
+
+      <p class="legend">
+        🟡 Maroon and gold bars represent illustrative view activity,
+        not actual measured traffic.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>🎬 Your Top Videos</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Video</th>
+              <th>Views</th>
+              <th>Likes</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+
+          <tbody id="videoRows">
+            <tr>
+              <td>My First Talent</td>
+              <td>620</td>
+              <td>180</td>
+              <td>40</td>
+            </tr>
+
+            <tr>
+              <td>My Special Skill</td>
+              <td>410</td>
+              <td>105</td>
+              <td>28</td>
+            </tr>
+
+            <tr>
+              <td>Creative Moments</td>
+              <td>220</td>
+              <td>55</td>
+              <td>18</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>💡 Grow Your Talent</h2>
+      <ul>
+        <li>Post original and interesting videos.</li>
+        <li>Reply politely to comments.</li>
+        <li>Share your talent with your community.</li>
+        <li>Check which videos your audience enjoys most.</li>
+      </ul>
+
+      <p class="note">
+        These analytics use sample values. Real statistics require
+        published videos, event tracking, and a connected backend.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 TalentVora | Your Talent, Your Growth 🌍
+  </footer>
+
+  <script>
+    const period = document.getElementById("period");
+
+    const demoData = {
+      7: {
+        views: 1250,
+        likes: 340,
+        comments: 86,
+        shares: 42,
+        supporters: 75
+      },
+      30: {
+        views: 5400,
+        likes: 1420,
+        comments: 310,
+        shares: 190,
+        supporters: 260
+      },
+      90: {
+        views: 18200,
+        likes: 4600,
+        comments: 980,
+        shares: 620,
+        supporters: 840
+      }
+    };
+
+    function updateAnalytics() {
+      const data = demoData[period.value];
+
+      document.getElementById("views").textContent =
+        data.views.toLocaleString();
+
+      document.getElementById("likes").textContent =
+        data.likes.toLocaleString();
+
+      document.getElementById("comments").textContent =
+        data.comments.toLocaleString();
+
+      document.getElementById("shares").textContent =
+        data.shares.toLocaleString();
+
+      document.getElementById("supporters").textContent =
+        data.supporters.toLocaleString();
+    }
+
+    period.addEventListener("change", updateAnalytics);
+    updateAnalytics();
+  </script>
+
+</body>
+</html>
