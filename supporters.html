@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supporters | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      color: #ffd700;
+      text-align: center;
+      padding: 35px 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+    }
+
+    .hero h2 {
+      font-size: 29px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: white;
+      line-height: 1.6;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 22px 15px;
+      text-align: center;
+      border-radius: 12px;
+      border-top: 4px solid #d4af37;
+      box-shadow: 0 3px 12px #390d1b12;
+    }
+
+    .stat-card h3 {
+      color: #800020;
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card p {
+      color: #66545a;
+    }
+
+    .section-title {
+      color: #800020;
+      margin-bottom: 16px;
+    }
+
+    .creator-box,
+    .supporter-box {
+      background: white;
+      border-radius: 13px;
+      padding: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 3px 12px #390d1b12;
+    }
+
+    .creator-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .creator-info h3 {
+      color: #800020;
+      margin-bottom: 7px;
+    }
+
+    .creator-info p {
+      color: #66545a;
+      line-height: 1.5;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 11px 16px;
+    }
+
+    .support-btn {
+      background: #800020;
+      color: #ffd700;
+      border: none;
+    }
+
+    .support-btn:hover {
+      background: #590017;
+    }
+
+    .supporter-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .supporter {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 15px;
+      background: #fff8e8;
+      border: 1px solid #f0dfab;
+      border-radius: 10px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #390d1b;
+      color: #ffd700;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      flex-shrink: 0;
+    }
+
+    .supporter h4 {
+      color: #800020;
+      margin-bottom: 5px;
+    }
+
+    .supporter p {
+      font-size: 13px;
+      color: #66545a;
+    }
+
+    .note {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #66545a;
+      margin-top: 18px;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 20px;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .creator-box {
+        align-items: flex-start;
+      }
+
+      .support-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="explore.html">Explore</a>
+      <a href="talentclips.html">Talent Clips</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>💛 Support Amazing Talent</h2>
+      <p>Every kind word, follow, and share can encourage a creator.</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <h3 id="supportCount">0</h3>
+        <p>Creators Supported</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="peopleCount">4</h3>
+        <p>Demo Supporters</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>🌟</h3>
+        <p>Spread Positivity</p>
+      </div>
+    </section>
+
+    <h2 class="section-title">🌟 Discover Creators</h2>
+
+    <section class="creator-box">
+      <div class="creator-info">
+        <h3>🎤 Ananya — Singer</h3>
+        <p>Creating music and sharing the joy of singing.</p>
+      </div>
+      <button class="support-btn" data-creator="Ananya">
+        💛 Support
+      </button>
+    </section>
+
+    <section class="creator-box">
+      <div class="creator-info">
+        <h3>🎨 Maya — Artist</h3>
+        <p>Sharing creative drawings and original artwork.</p>
+      </div>
+      <button class="support-btn" data-creator="Maya">
+        💛 Support
+      </button>
+    </section>
+
+    <section class="creator-box">
+      <div class="creator-info">
+        <h3>💻 Arjun — Developer</h3>
+        <p>Building websites and learning new technologies.</p>
+      </div>
+      <button class="support-btn" data-creator="Arjun">
+        💛 Support
+      </button>
+    </section>
+
+    <section class="creator-box">
+      <div class="creator-info">
+        <h3>💃 Rahul — Dancer</h3>
+        <p>Sharing dance performances and creative ideas.</p>
+      </div>
+      <button class="support-btn" data-creator="Rahul">
+        💛 Support
+      </button>
+    </section>
+
+    <section class="supporter-box">
+      <h2 class="section-title">🏆 Community Supporters</h2>
+
+      <div class="supporter-list">
+        <div class="supporter">
+          <div class="avatar">😊</div>
+          <div>
+            <h4>Priya</h4>
+            <p>Encouraging creators</p>
+          </div>
+        </div>
+
+        <div class="supporter">
+          <div class="avatar">🌟</div>
+          <div>
+            <h4>Kiran</h4>
+            <p>Sharing positive feedback</p>
+          </div>
+        </div>
+
+        <div class="supporter">
+          <div class="avatar">🎨</div>
+          <div>
+            <h4>Meera</h4>
+            <p>Supporting artists</p>
+          </div>
+        </div>
+
+        <div class="supporter">
+          <div class="avatar">🎵</div>
+          <div>
+            <h4>Ravi</h4>
+            <p>Supporting musicians</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">
+        These are sample profiles for demonstration. The Support button
+        records your selection in this browser only. It does not transfer
+        money or contact a real creator.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora — Celebrate Every Talent 💛</p>
+  </footer>
+
+  <script>
+    const supportButtons = document.querySelectorAll(".support-btn");
+
+    let supportedCreators = JSON.parse(
+      localStorage.getItem("tvSupportedCreators") || "[]"
+    );
+
+    function updatePage() {
+      supportButtons.forEach(button => {
+        const creator = button.dataset.creator;
+        const isSupported = supportedCreators.includes(creator);
+
+        button.textContent = isSupported
+          ? "✓ Supported"
+          : "💛 Support";
+
+        button.style.background = isSupported
+          ? "#fff1c2"
+          : "#800020";
+
+        button.style.color = isSupported
+          ? "#800020"
+          : "#ffd700";
+
+        button.style.border = isSupported
+          ? "1px solid #d4af37"
+          : "none";
+      });
+
+      document.getElementById("supportCount").textContent =
+        supportedCreators.length;
+    }
+
+    supportButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const creator = button.dataset.creator;
+
+        if (supportedCreators.includes(creator)) {
+          supportedCreators = supportedCreators.filter(
+            name => name !== creator
+          );
+        } else {
+          supportedCreators.push(creator);
+        }
+
+        localStorage.setItem(
+          "tvSupportedCreators",
+          JSON.stringify(supportedCreators)
+        );
+
+        updatePage();
+      });
+    });
+
+    updatePage();
+  </script>
+
+</body>
+</html>
