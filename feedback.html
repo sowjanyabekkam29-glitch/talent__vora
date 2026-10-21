@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      color: #ffd700;
+      text-align: center;
+      padding: 35px 20px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: white;
+    }
+
+    .feedback-card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      border-top: 5px solid #d4af37;
+      box-shadow: 0 4px 18px #390d1b15;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 7px;
+      font-weight: bold;
+      color: #800020;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      font: inherit;
+      background: #fffdf7;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .rating {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .star {
+      border: 1px solid #d4af37;
+      background: #fff8e8;
+      color: #800020;
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 20px;
+    }
+
+    .star.active,
+    .star:hover {
+      background: #800020;
+      color: #ffd700;
+    }
+
+    .rating-text {
+      margin-top: 8px;
+      color: #66545a;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #800020;
+      color: #ffd700;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #590017;
+    }
+
+    .message {
+      display: none;
+      background: #fff1c2;
+      color: #390d1b;
+      border-left: 4px solid #d4af37;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 18px;
+    }
+
+    .saved-feedback {
+      margin-top: 25px;
+    }
+
+    .saved-feedback h3 {
+      color: #800020;
+      margin-bottom: 12px;
+    }
+
+    .feedback-item {
+      background: #fff8e8;
+      border: 1px solid #f0dfab;
+      border-radius: 9px;
+      padding: 15px;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .feedback-item strong {
+      color: #800020;
+    }
+
+    .feedback-item p {
+      margin-top: 6px;
+    }
+
+    .empty {
+      color: #66545a;
+      font-size: 14px;
+    }
+
+    .notice {
+      color: #66545a;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 20px;
+      margin-top: 35px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .feedback-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="search.html">Search</a>
+      <a href="about.html">About</a>
+      <a href="help.html">Help</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>⭐ Share Your Feedback</h2>
+      <p>Your suggestions can help improve TalentVora.</p>
+    </section>
+
+    <section class="feedback-card">
+
+      <form id="feedbackForm">
+
+        <label for="userName">Your Name</label>
+        <input
+          type="text"
+          id="userName"
+          placeholder="Enter your name"
+          maxlength="80"
+          required
+        >
+
+        <label for="category">Feedback Category</label>
+        <select id="category" required>
+          <option value="">Choose a category</option>
+          <option>Website Design</option>
+          <option>Ease of Use</option>
+          <option>Talent Discovery</option>
+          <option>Video Features</option>
+          <option>New Ideas</option>
+          <option>Other</option>
+        </select>
+
+        <label>Rate Your Experience</label>
+
+        <div class="rating" id="ratingButtons">
+          <button type="button" class="star" data-rating="1" aria-label="1 star">★</button>
+          <button type="button" class="star" data-rating="2" aria-label="2 stars">★</button>
+          <button type="button" class="star" data-rating="3" aria-label="3 stars">★</button>
+          <button type="button" class="star" data-rating="4" aria-label="4 stars">★</button>
+          <button type="button" class="star" data-rating="5" aria-label="5 stars">★</button>
+        </div>
+
+        <p class="rating-text" id="ratingText">
+          Select a rating from 1 to 5.
+        </p>
+
+        <label for="suggestion">Your Feedback</label>
+        <textarea
+          id="suggestion"
+          placeholder="Tell us what you like or what we can improve..."
+          maxlength="1500"
+          required
+        ></textarea>
+
+        <button type="submit" class="submit-btn">
+          Submit Feedback
+        </button>
+
+        <div class="message" id="successMessage" role="status"></div>
+
+      </form>
+
+      <p class="notice">
+        Demo only: feedback is saved in this browser. It is not sent
+        to the website owner or a server.
+      </p>
+
+      <section class="saved-feedback">
+        <h3>💬 Your Saved Feedback</h3>
+        <div id="feedbackList"></div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora | Your Voice Matters 💛</p>
+  </footer>
+
+  <script>
+    const ratingButtons = document.querySelectorAll(".star");
+    const ratingText = document.getElementById("ratingText");
+    const feedbackForm = document.getElementById("feedbackForm");
+    const successMessage = document.getElementById("successMessage");
+    const feedbackList = document.getElementById("feedbackList");
+
+    let selectedRating = 0;
+
+    const ratingLabels = {
+      1: "1 star — Needs improvement",
+      2: "2 stars — Fair",
+      3: "3 stars — Good",
+      4: "4 stars — Very good",
+      5: "5 stars — Excellent"
+    };
+
+    ratingButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedRating = Number(button.dataset.rating);
+
+        ratingButtons.forEach(star => {
+          const active =
+            Number(star.dataset.rating) <= selectedRating;
+
+          star.classList.toggle("active", active);
+          star.setAttribute("aria-pressed", String(active));
+        });
+
+        ratingText.textContent = ratingLabels[selectedRating];
+      });
+    });
+
+    function getFeedback() {
+      try {
+        const data = JSON.parse(
+          localStorage.getItem("tvFeedback") || "[]"
+        );
+
+        return Array.isArray(data) ? data : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function displayFeedback() {
+      const feedback = getFeedback();
+      feedbackList.replaceChildren();
+
+      if (feedback.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "You have not submitted feedback yet.";
+        feedbackList.appendChild(empty);
+        return;
+      }
+
+      feedback.slice().reverse().forEach(item => {
+        const card = document.createElement("article");
+        card.className = "feedback-item";
+
+        const title = document.createElement("strong");
+        title.textContent =
+          item.name + " · " + "★".repeat(item.rating);
+
+        const category = document.createElement("p");
+        category.textContent = "Category: " + item.category;
+
+        const comment = document.createElement("p");
+        comment.textContent = item.message;
+
+        card.append(title, category, comment);
+        feedbackList.appendChild(card);
+      });
+    }
+
+    feedbackForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (selectedRating < 1 || selectedRating > 5) {
+        alert("Please select a star rating.");
+        return;
+      }
+
+      const entry = {
+        name: document.getElementById("userName").value.trim(),
+        category: document.getElementById("category").value,
+        rating: selectedRating,
+        message: document.getElementById("suggestion").value.trim()
+      };
+
+      if (!entry.name || !entry.category || !entry.message) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const feedback = getFeedback();
+      feedback.push(entry);
+
+      try {
+        localStorage.setItem("tvFeedback", JSON.stringify(feedback));
+      } catch {
+        alert("Could not save feedback in this browser.");
+        return;
+      }
+
+      successMessage.textContent =
+        "Thank you! Your feedback was saved in this browser.";
+      successMessage.style.display = "block";
+
+      feedbackForm.reset();
+      selectedRating = 0;
+
+      ratingButtons.forEach(button => {
+        button.classList.remove("active");
+        button.setAttribute("aria-pressed", "false");
+      });
+
+      ratingText.textContent = "Select a rating from 1 to 5.";
+
+      displayFeedback();
+    });
+
+    displayFeedback();
+  </script>
+
+</body>
+</html>
