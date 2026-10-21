@@ -1,54 +1,24 @@
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+const db = window.supabase.createClient(
+  "https://pnbgxzovrgujmrawridj.supabase.co",
+  "sb_publishable_OuMqrtm2hvHs_Ae1sobSFA_EdWtWhU1"
+);
 
-function togglePassword() {
-  const password = document.getElementById("password");
-
-  if (!password) return;
-
-  password.type =
-    password.type === "password" ? "text" : "password";
-}
-
-function likeVideo(button) {
-  const count = button.querySelector("span");
-
-  if (!count) return;
-
-  count.textContent = Number(count.textContent) + 1;
-}
-
-function logout() {
-  localStorage.removeItem("tvUser");
-}
-
-// Demo navigation only; this does not securely verify a password.
-const loginForm = document.getElementById("loginForm");
-
-if (loginForm) {
-  loginForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    const accounts = JSON.parse(
-      localStorage.getItem("tvAccounts") || "[]"
-    );
-
-    const account = accounts.find(
-      item => item.email.toLowerCase() === email.toLowerCase()
-        && item.password === password
-    );
-
-    if (!account) {
-      alert("Account not found. Please register first.");
-      return;
-    }
-
-    localStorage.setItem("tvUser", JSON.stringify({
-      name: account.name,
-      email: account.email
-    }));
-
-    window.location.href = "home.html";
+// Register (use in register.html)
+async function registerUser(name, email, password) {
+  const { error } = await db.auth.signUp({
+    email,
+    password,
+    options: { data: { name } }
   });
+  if (error) return alert(error.message);
+  alert("Registered! Check your email to confirm, then log in.");
 }
+
+// Login (use in login.html)
+async function loginUser(email, password) {
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  if (error) return alert(error.message);
+  window.location.href = "dashboard.html";
+    }
