@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | TalentVora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h2>✦ TalentVora</h2>
+    <a href="upload.html">＋ Upload</a>
+    <a href="profile.html">My Profile</a>
+    <a href="login.html" onclick="logout()">Logout</a>
+  </header>
+
+  <main class="home">
+    <h1>Discover Talent ✨</h1>
+    <input id="search" type="search"
+           placeholder="Search videos and creators...">
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="talentclips.html">TalentClips</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="messages.html">Messages</a>
+      <a href="notifications.html">Notifications</a>
+    </nav>
+
+    <h2>Recommended Videos</h2>
+
+    <section class="video-grid" id="videoGrid">
+      <article class="video-card">
+        <div class="thumbnail">🎤</div>
+        <h3>Singing Talent</h3>
+        <p>Show the world your voice!</p>
+        <button onclick="likeVideo(this)">♥ Like <span>0</span></button>
+      </article>
+
+      <article class="video-card">
+        <div class="thumbnail">💃</div>
+        <h3>Dance Performance</h3>
+        <p>Share your dance moves.</p>
+        <button onclick="likeVideo(this)">♥ Like <span>0</span></button>
+      </article>
+
+      <article class="video-card">
+        <div class="thumbnail">🎨</div>
+        <h3>Art & Creativity</h3>
+        <p>Show your creative side.</p>
+        <button onclick="likeVideo(this)">♥ Like <span>0</span></button>
+      </article>
+
+      <article class="video-card">
+        <div class="thumbnail">😂</div>
+        <h3>Comedy Talent</h3>
+        <p>Make everyone's day better.</p>
+        <button onclick="likeVideo(this)">♥ Like <span>0</span></button>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
