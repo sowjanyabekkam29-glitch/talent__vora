@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center | TalentVora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #390d1b, #800020);
+      color: #ffd700;
+      text-align: center;
+      padding: 35px 20px;
+      border-radius: 15px;
+      margin-bottom: 28px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: white;
+    }
+
+    .section-title {
+      color: #800020;
+      margin-bottom: 16px;
+    }
+
+    .help-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .help-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border-top: 4px solid #d4af37;
+      box-shadow: 0 3px 12px #390d1b12;
+    }
+
+    .help-card h3 {
+      color: #800020;
+      margin-bottom: 8px;
+    }
+
+    .help-card p {
+      font-size: 14px;
+      color: #66545a;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #f0dfab;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: white;
+      border: none;
+      color: #800020;
+      text-align: left;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 16px 16px;
+      color: #66545a;
+      font-size: 14px;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 24px;
+      border-radius: 13px;
+      margin-top: 30px;
+      box-shadow: 0 3px 12px #390d1b12;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: bold;
+      color: #800020;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      font: inherit;
+      background: #fffdf7;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px;
+      background: #800020;
+      color: #ffd700;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #590017;
+    }
+
+    .notice {
+      margin-top: 14px;
+      color: #66545a;
+      font-size: 13px;
+    }
+
+    #formMessage {
+      margin-top: 15px;
+      color: #800020;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 20px;
+      margin-top: 35px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .contact-box {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>👑 TalentVora</h1>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="explore.html">Explore</a>
+      <a href="search.html">Search</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>💛 How Can We Help?</h2>
+      <p>Find answers and learn how to use TalentVora.</p>
+    </section>
+
+    <h2 class="section-title">📚 Quick Help</h2>
+
+    <section class="help-cards">
+      <article class="help-card">
+        <h3>🔐 Login Help</h3>
+        <p>Learn how to log in or register for a TalentVora account.</p>
+      </article>
+
+      <article class="help-card">
+        <h3>🎬 Upload Talent</h3>
+        <p>Share your skills, videos, artwork, and creative projects.</p>
+      </article>
+
+      <article class="help-card">
+        <h3>👤 Profile Help</h3>
+        <p>Update your profile name, bio, photo, and talent category.</p>
+      </article>
+
+      <article class="help-card">
+        <h3>🌍 Discover Creators</h3>
+        <p>Search for creators and explore different talent categories.</p>
+      </article>
+    </section>
+
+    <h2 class="section-title">❓ Frequently Asked Questions</h2>
+
+    <section id="faqList">
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How do I create an account?
+          <span>＋</span>
+        </button>
+        <div class="faq-answer">
+          Open register.html, enter your details, and submit the registration
+          form. This demo stores account information in your browser only.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How can I share my talent?
+          <span>＋</span>
+        </button>
+        <div class="faq-answer">
+          Open the Upload page, enter your title and category, and select
+          your media file. A real public upload needs a server and storage.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I edit my profile?
+          <span>＋</span>
+        </button>
+        <div class="faq-answer">
+          Yes. Open profile.html to edit your profile details using the
+          profile form included in this project.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Are the creators real?
+          <span>＋</span>
+        </button>
+        <div class="faq-answer">
+          The profiles included in this starter project are sample data.
+          They are not connected to real worldwide users.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Does TalentVora process payments?
+          <span>＋</span>
+        </button>
+        <div class="faq-answer">
+          No. The current demo does not process payments. Never enter
+          bank details or payment information into a demo form.
+        </div>
+      </article>
+
+    </section>
+
+    <section class="contact-box">
+      <h2 class="section-title">✉️ Contact / Send Feedback</h2>
+
+      <form id="contactForm">
+        <label for="name">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          required
+          maxlength="80"
+        >
+
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+          maxlength="150"
+        >
+
+        <label for="topic">Choose a Topic</label>
+        <select id="topic" required>
+          <option value="">Select a topic</option>
+          <option>Login Problem</option>
+          <option>Profile Help</option>
+          <option>Upload Problem</option>
+          <option>Feedback</option>
+          <option>Other</option>
+        </select>
+
+        <label for="message">Your Message</label>
+        <textarea
+          id="message"
+          placeholder="How can we help you?"
+          required
+          maxlength="1000"
+        ></textarea>
+
+        <button type="submit" class="submit-btn">
+          Send Message
+        </button>
+
+        <p id="formMessage" role="status"></p>
+
+        <p class="notice">
+          Demo form only: this page does not send messages to an email
+          address or server. Connect a backend to receive real requests.
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 TalentVora | Helping Every Talent Shine ✨</p>
+  </footer>
+
+  <script>
+    // Open and close FAQ answers.
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const isOpen = item.classList.toggle("open");
+
+        button.setAttribute("aria-expanded", String(isOpen));
+        button.querySelector("span").textContent = isOpen ? "−" : "＋";
+      });
+    });
+
+    // Demo contact form. It does not send data to a server.
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      document.getElementById("formMessage").textContent =
+        "Your form is valid! This demo cannot send it yet. Connect a backend to receive messages.";
+
+      event.target.reset();
+    });
+  </script>
+
+</body>
+</html>
