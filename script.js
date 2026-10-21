@@ -1,24 +1,65 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
-const db = window.supabase.createClient(
-  "https://pnbgxzovrgujmrawridj.supabase.co",
-  "sb_publishable_OuMqrtm2hvHs_Ae1sobSFA_EdWtWhU1"
-);
+const SUPABASE_URL = "https://pnbgxzovrgujmrawridj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_OuMqrtm2hvHs_Ae1sobSFA_EdWtWhU1";
 
-// Register (use in register.html)
-async function registerUser(name, email, password) {
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function showMessage(text, isError = true) {
+  const box = document.getElementById("message");
+  if (box) {
+    box.textContent = text;
+    box.style.color = isError ? "red" : "green";
+  } else {
+    alert(text);
+  }
+}
+
+// ---------- REGISTER ----------
+async function handleRegister(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (password.length < 6) {
+    return showMessage("Password must be at least 6 characters.");
+  }
+
   const { error } = await db.auth.signUp({
     email,
     password,
     options: { data: { name } }
   });
-  if (error) return alert(error.message);
-  alert("Registered! Check your email to confirm, then log in.");
+
+  if (error) return showMessage(error.message);
+
+  showMessage("Registered successfully! Redirecting to login...", false);
+  setTimeout(() => (window.location.href = "login.html"), 1500);
 }
 
-// Login (use in login.html)
-async function loginUser(email, password) {
+// ---------- LOGIN ----------
+async function handleLogin(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
   const { error } = await db.auth.signInWithPassword({ email, password });
-  if (error) return alert(error.message);
+
+  if (error) return showMessage(error.message);
+
   window.location.href = "dashboard.html";
+}
+
+// ---------- LOGOUT ----------
+async function handleLogout() {
+  await db.auth.signOut();
+  window.location.href = "login.html";
+}
+
+// ---------- PROTECT PAGES (use on dashboard, upload, etc.) ----------
+async function requireLogin() {
+  const { data } = await db.auth.getSession();
+  if (!data.session) window.location.href = "login.html";
+  return data.session;
     }
