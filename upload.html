@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TalentVora | Upload Talent</title>
+  <title>Upload Talent | TalentVora</title>
 
   <style>
     * {
@@ -20,59 +21,47 @@
     header {
       background: #390d1b;
       color: #ffd700;
-      padding: 18px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 4px solid #d4af37;
     }
 
-    header h2 {
-      margin: 0;
+    nav {
+      background: #800020;
+      padding: 14px;
+      text-align: center;
     }
 
-    header a {
+    nav a {
       color: #ffd700;
       text-decoration: none;
-      margin-right: 12px;
+      margin: 7px;
+      display: inline-block;
+      font-weight: bold;
     }
 
     .container {
-      max-width: 750px;
-      margin: 30px auto;
+      max-width: 760px;
+      margin: 25px auto;
       padding: 20px;
     }
 
-    .upload-card {
+    .card {
       background: white;
-      padding: 28px;
+      padding: 25px;
       border-radius: 16px;
       border-top: 5px solid #d4af37;
-      box-shadow: 0 5px 20px #390d1b18;
+      box-shadow: 0 5px 20px #390d1b15;
     }
 
-    h1, h2 {
+    h2 {
       color: #800020;
-    }
-
-    .upload-area {
-      border: 2px dashed #d4af37;
-      border-radius: 12px;
-      padding: 30px 15px;
-      text-align: center;
-      background: #fffaf0;
-      margin: 20px 0;
-    }
-
-    .upload-icon {
-      font-size: 50px;
     }
 
     label {
       display: block;
-      margin: 17px 0 7px;
       font-weight: bold;
+      margin: 16px 0 7px;
     }
 
     input, textarea, select {
@@ -80,229 +69,362 @@
       padding: 12px;
       border: 1px solid #d4af37;
       border-radius: 8px;
-      font-size: 15px;
-      background: white;
+      font: inherit;
+    }
+
+    input[type="file"] {
+      background: #fff8e8;
     }
 
     textarea {
+      min-height: 90px;
       resize: vertical;
-      min-height: 100px;
     }
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
+    button {
       background: #800020;
       color: #ffd700;
+      padding: 13px 18px;
+      border: none;
+      border-radius: 8px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .upload-button {
+      width: 100%;
       margin-top: 20px;
     }
 
-    .btn:hover {
-      background: #5e0018;
+    #status {
+      margin-top: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    progress {
+      width: 100%;
+      height: 20px;
+      margin-top: 12px;
+      accent-color: #800020;
     }
 
     video {
+      display: block;
       width: 100%;
-      max-height: 350px;
+      max-height: 400px;
+      background: #19050b;
       border-radius: 10px;
-      margin-top: 15px;
-      background: #390d1b;
+      margin-top: 16px;
     }
 
-    .message {
-      margin-top: 15px;
+    .result {
+      display: none;
+      margin-top: 22px;
+      padding: 16px;
+      background: #fff8e8;
+      border: 1px solid #d4af37;
+      border-radius: 10px;
+    }
+
+    .result a {
       color: #800020;
-      font-weight: bold;
       overflow-wrap: anywhere;
     }
 
     .note {
-      color: #755b61;
-      font-size: 13px;
+      color: #705b60;
+      font-size: 14px;
       line-height: 1.6;
     }
 
     footer {
+      text-align: center;
       background: #390d1b;
       color: #ffd700;
-      text-align: center;
-      padding: 18px;
+      padding: 20px;
       margin-top: 30px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .container {
         padding: 12px;
       }
 
-      .upload-card {
-        padding: 20px;
+      .card {
+        padding: 18px;
       }
     }
   </style>
 </head>
 
 <body>
-
   <header>
-    <h2>👑 TalentVora</h2>
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="profile.html">Profile</a>
-    </nav>
+    <h1>🏆 TalentVora</h1>
+    <p>Share Your Talent With The World</p>
   </header>
 
-  <main class="container">
-    <div class="upload-card">
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="talentclips.html">Talent Clips</a>
+  </nav>
 
-      <h1>🎬 Upload Your Talent</h1>
-      <p>Show your skills to the world!</p>
+  <main class="container">
+    <section class="card">
+      <h2>🎬 Upload Your Talent</h2>
+      <p>Share your singing, dancing, art, sports or other talents.</p>
 
       <form id="uploadForm">
-
-        <label for="videoTitle">Video Title</label>
+        <label for="title">Video Title</label>
         <input
           type="text"
-          id="videoTitle"
-          placeholder="Enter your video title"
+          id="title"
           maxlength="100"
+          placeholder="Enter your video title"
           required
         >
 
         <label for="category">Talent Category</label>
         <select id="category" required>
-          <option value="">Choose a category</option>
-          <option>🎤 Singing</option>
-          <option>💃 Dancing</option>
-          <option>🎨 Drawing & Art</option>
-          <option>🏏 Sports</option>
-          <option>🎭 Acting</option>
-          <option>📚 Education</option>
-          <option>💻 Technology</option>
-          <option>✨ Other Talent</option>
+          <option value="">Select category</option>
+          <option>Singing</option>
+          <option>Dancing</option>
+          <option>Art & Drawing</option>
+          <option>Acting</option>
+          <option>Education</option>
+          <option>Sports</option>
+          <option>Other Talent</option>
         </select>
 
         <label for="description">Description</label>
         <textarea
           id="description"
+          maxlength="500"
           placeholder="Describe your talent..."
-          maxlength="1000"
         ></textarea>
 
-        <label for="videoFile">Select Video</label>
+        <label for="videoFile">Choose Video</label>
+        <input
+          type="file"
+          id="videoFile"
+          accept="video/mp4,video/webm,video/quicktime"
+          required
+        >
 
-        <div class="upload-area">
-          <div class="upload-icon">📹</div>
-          <p>Choose a video from your device</p>
-          <input
-            type="file"
-            id="videoFile"
-            accept="video/*"
-            required
-          >
-          <p class="note">Demo limit: videos up to 50 MB.</p>
-        </div>
+        <p class="note">
+          Demo limit: 50 MB per video. Use MP4, WebM or MOV.
+          Upload only videos you own or have permission to share.
+        </p>
 
-        <video id="videoPreview" controls hidden></video>
-
-        <p id="fileInfo" class="note"></p>
-
-        <button class="btn" type="submit">
-          Upload Talent 🚀
+        <button class="upload-button" id="uploadButton" type="submit">
+          ⬆️ Upload Video
         </button>
-
-        <p id="message" class="message" role="status"></p>
-
       </form>
-    </div>
+
+      <progress id="progress" value="0" max="100" hidden></progress>
+      <p id="status" role="status" aria-live="polite"></p>
+
+      <section class="result" id="result">
+        <h3>✅ Video Uploaded!</h3>
+        <video id="uploadedVideo" controls playsinline></video>
+        <p>
+          <strong>Online video URL:</strong><br>
+          <a id="videoLink" href="#" target="_blank"
+             rel="noopener noreferrer">Open video</a>
+        </p>
+        <button id="copyButton" type="button">Copy Video URL</button>
+      </section>
+    </section>
   </main>
 
   <footer>
-    © 2026 TalentVora | Your Talent, Your World 🌍
+    <p>© 2026 TalentVora</p>
+    <p>🌟 Your Talent. Your Recognition. Your World.</p>
   </footer>
 
   <script>
-    const videoInput = document.getElementById("videoFile");
-    const preview = document.getElementById("videoPreview");
-    const fileInfo = document.getElementById("fileInfo");
-    const message = document.getElementById("message");
+    // Replace these two values with your own Cloudinary details.
+    const CLOUD_NAME = "YOUR_CLOUD_NAME";
+    const UPLOAD_PRESET = "talentvora_videos";
 
-    let previewURL = null;
+    const form = document.getElementById("uploadForm");
+    const fileInput = document.getElementById("videoFile");
+    const button = document.getElementById("uploadButton");
+    const progress = document.getElementById("progress");
+    const status = document.getElementById("status");
+    const result = document.getElementById("result");
+    const uploadedVideo = document.getElementById("uploadedVideo");
+    const videoLink = document.getElementById("videoLink");
+    const copyButton = document.getElementById("copyButton");
 
-    videoInput.addEventListener("change", function () {
-      const file = videoInput.files[0];
+    const MAX_SIZE = 50 * 1024 * 1024;
+    const ALLOWED_TYPES = [
+      "video/mp4",
+      "video/webm",
+      "video/quicktime"
+    ];
 
-      message.textContent = "";
-      preview.hidden = true;
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-      if (previewURL) {
-        URL.revokeObjectURL(previewURL);
-        previewURL = null;
+      if (
+        CLOUD_NAME === "YOUR_CLOUD_NAME" ||
+        !CLOUD_NAME ||
+        !UPLOAD_PRESET
+      ) {
+        status.textContent =
+          "Setup required: enter your Cloud Name and upload preset.";
+        return;
       }
+
+      const file = fileInput.files[0];
 
       if (!file) {
-        fileInfo.textContent = "";
+        status.textContent = "Please choose a video first.";
         return;
       }
 
-      if (!file.type.startsWith("video/")) {
-        message.textContent = "Please select a valid video file.";
-        videoInput.value = "";
-        fileInfo.textContent = "";
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        status.textContent =
+          "Unsupported format. Choose an MP4, WebM or MOV video.";
         return;
       }
 
-      if (file.size > 50 * 1024 * 1024) {
-        message.textContent = "Video is too large. Choose a video under 50 MB.";
-        videoInput.value = "";
-        fileInfo.textContent = "";
+      if (file.size > MAX_SIZE) {
+        status.textContent =
+          "Video is larger than 50 MB. Please choose a smaller video.";
         return;
       }
 
-      previewURL = URL.createObjectURL(file);
-      preview.src = previewURL;
-      preview.hidden = false;
+      const title = document.getElementById("title").value.trim();
+      const category = document.getElementById("category").value;
+      const description =
+        document.getElementById("description").value.trim();
 
-      fileInfo.textContent =
-        "Selected: " + file.name +
-        " (" + (file.size / (1024 * 1024)).toFixed(2) + " MB)";
+      if (!title || !category) {
+        status.textContent = "Please enter a title and category.";
+        return;
+      }
+
+      button.disabled = true;
+      progress.hidden = false;
+      progress.value = 0;
+      result.style.display = "none";
+      status.textContent = "Preparing upload...";
+
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", UPLOAD_PRESET);
+
+      const xhr = new XMLHttpRequest();
+
+      xhr.open(
+        "POST",
+        "https://api.cloudinary.com/v1_1/" +
+          encodeURIComponent(CLOUD_NAME) +
+          "/video/upload"
+      );
+
+      xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+          const percent = Math.round((e.loaded / e.total) * 100);
+          progress.value = percent;
+          status.textContent = "Uploading: " + percent + "%";
+        }
+      });
+
+      xhr.onload = function() {
+        button.disabled = false;
+
+        let response;
+
+        try {
+          response = JSON.parse(xhr.responseText);
+        } catch {
+          status.textContent = "Unexpected server response.";
+          return;
+        }
+
+        if (xhr.status < 200 || xhr.status >= 300) {
+          console.error("Cloudinary upload error:", response);
+          status.textContent =
+            "Upload failed: " +
+            (response.error?.message || "Check your Cloudinary setup.");
+          return;
+        }
+
+        if (!response.secure_url) {
+          status.textContent =
+            "Upload response did not include a video URL.";
+          return;
+        }
+
+        const record = {
+          title: title,
+          category: category,
+          description: description,
+          videoUrl: response.secure_url,
+          publicId: response.public_id,
+          uploadedAt: new Date().toISOString()
+        };
+
+        // This metadata is local to this browser only.
+        try {
+          const saved = JSON.parse(
+            localStorage.getItem("tvUploadedVideos") || "[]"
+          );
+
+          const records = Array.isArray(saved) ? saved : [];
+          records.push(record);
+          localStorage.setItem(
+            "tvUploadedVideos",
+            JSON.stringify(records)
+          );
+        } catch (error) {
+          console.warn("Could not save local video details:", error);
+        }
+
+        uploadedVideo.src = response.secure_url;
+        videoLink.href = response.secure_url;
+        videoLink.textContent = response.secure_url;
+        result.style.display = "block";
+
+        status.textContent =
+          "Upload completed successfully! Your video is online.";
+
+        form.reset();
+      };
+
+      xhr.onerror = function() {
+        button.disabled = false;
+        status.textContent =
+          "Network error. Check your internet and try again.";
+      };
+
+      xhr.onabort = function() {
+        button.disabled = false;
+        status.textContent = "Upload was cancelled.";
+      };
+
+      xhr.send(data);
     });
 
-    document.getElementById("uploadForm")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const file = videoInput.files[0];
-
-        if (!file || !file.type.startsWith("video/")) {
-          message.textContent = "Please select a valid video.";
-          return;
-        }
-
-        if (file.size > 50 * 1024 * 1024) {
-          message.textContent = "Choose a video under 50 MB.";
-          return;
-        }
-
-        const title = document.getElementById("videoTitle").value.trim();
-        const category = document.getElementById("category").value;
-
-        if (!title || !category) {
-          message.textContent = "Please complete all required fields.";
-          return;
-        }
-
-        message.textContent =
-          "Video preview ready! To publish it for everyone, connect a video storage backend.";
-      });
+    copyButton.addEventListener("click", async function() {
+      try {
+        await navigator.clipboard.writeText(videoLink.href);
+        status.textContent = "Video URL copied!";
+      } catch {
+        status.textContent =
+          "Copy not available. Press and hold the video URL to copy it.";
+      }
+    });
   </script>
-
 </body>
 </html>
-
