@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentVora | Messages</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8e8;
+      color: #390d1b;
+    }
+
+    header {
+      background: #390d1b;
+      color: #ffd700;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    header a {
+      color: #ffd700;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    .page-title {
+      color: #800020;
+    }
+
+    .chat-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 550px;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px #390d1b15;
+    }
+
+    .sidebar {
+      border-right: 1px solid #eee0bd;
+      padding: 18px;
+    }
+
+    .sidebar h2 {
+      color: #800020;
+      margin-top: 0;
+    }
+
+    .search {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 8px;
+      border-radius: 9px;
+      cursor: pointer;
+      border: none;
+      background: white;
+      width: 100%;
+      text-align: left;
+      color: #390d1b;
+      font: inherit;
+    }
+
+    .contact:hover,
+    .contact.active {
+      background: #fff2c9;
+    }
+
+    .avatar {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #800020;
+      color: #ffd700;
+      font-size: 21px;
+      flex-shrink: 0;
+    }
+
+    .contact-info {
+      min-width: 0;
+    }
+
+    .contact-info strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-info small {
+      color: #755b61;
+    }
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .chat-header {
+      padding: 17px;
+      border-bottom: 1px solid #eee0bd;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-header h3 {
+      margin: 0 0 5px;
+      color: #800020;
+    }
+
+    .chat-header small {
+      color: #755b61;
+    }
+
+    .messages {
+      padding: 20px;
+      flex: 1;
+      min-height: 300px;
+      max-height: 430px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #fffdf7;
+    }
+
+    .bubble {
+      max-width: 78%;
+      padding: 12px 15px;
+      border-radius: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .received {
+      align-self: flex-start;
+      background: #f3e8e8;
+      border-bottom-left-radius: 3px;
+    }
+
+    .sent {
+      align-self: flex-end;
+      background: #800020;
+      color: #fff8e8;
+      border-bottom-right-radius: 3px;
+    }
+
+    .time {
+      display: block;
+      margin-top: 5px;
+      font-size: 10px;
+      opacity: 0.75;
+      text-align: right;
+    }
+
+    .composer {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      border-top: 1px solid #eee0bd;
+    }
+
+    .composer input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .composer button {
+      padding: 12px 17px;
+      border: none;
+      border-radius: 8px;
+      background: #800020;
+      color: #ffd700;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .empty {
+      margin: auto;
+      color: #755b61;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .note {
+      color: #755b61;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    footer {
+      background: #390d1b;
+      color: #ffd700;
+      text-align: center;
+      padding: 18px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        padding: 10px;
+      }
+
+      .chat-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #eee0bd;
+        padding: 12px;
+      }
+
+      .contact {
+        padding: 9px;
+      }
+
+      .messages {
+        min-height: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>👑 TalentVora</h2>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">💬 Messages</h1>
+    <p>Connect with creators and share your ideas.</p>
+
+    <div class="chat-layout">
+
+      <aside class="sidebar">
+        <h2>Chats</h2>
+
+        <input
+          class="search"
+          id="searchContact"
+          type="search"
+          placeholder="Search conversations..."
+          aria-label="Search conversations"
+        >
+
+        <div id="contactList"></div>
+
+        <p class="note">
+          Demo page: conversations are saved only in this browser.
+        </p>
+      </aside>
+
+      <section class="chat">
+
+        <div class="chat-header">
+          <div class="avatar" id="chatAvatar">🎤</div>
+          <div>
+            <h3 id="chatName">Singer Star</h3>
+            <small>TalentVora Creator</small>
+          </div>
+        </div>
+
+        <div class="messages" id="messageList"
+             aria-live="polite">
+        </div>
+
+        <form class="composer" id="messageForm">
+          <input
+            id="messageInput"
+            type="text"
+            maxlength="1000"
+            placeholder="Write a message..."
+            aria-label="Write a message"
+            required
+          >
+          <button type="submit">Send ➤</button>
+        </form>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 TalentVora | Connect Through Talent 🌍
+  </footer>
+
+  <script>
+    const contacts = [
+      { id: "singer", name: "Singer Star", icon: "🎤" },
+      { id: "dancer", name: "Dance Queen", icon: "💃" },
+      { id: "artist", name: "Creative Artist", icon: "🎨" },
+      { id: "creator", name: "New Creator", icon: "🌟" }
+    ];
+
+    const storageKey = "tvDemoMessages";
+    let activeContact = "singer";
+
+    function loadMessages() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function saveMessages(data) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(data));
+        return true;
+      } catch {
+        alert("Could not save this message in browser storage.");
+        return false;
+      }
+    }
+
+    function escapeText(value) {
+      const div = document.createElement("div");
+      div.textContent = value;
+      return div.innerHTML;
+    }
+
+    function renderContacts(filter = "") {
+      const list = document.getElementById("contactList");
+      list.replaceChildren();
+
+      contacts
+        .filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
+        .forEach(contact => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className =
+            "contact" + (contact.id === activeContact ? " active" : "");
+
+          button.innerHTML = `
+            <span class="avatar">${contact.icon}</span>
+            <span class="contact-info">
+              <strong>${escapeText(contact.name)}</strong>
+              <small>Open conversation</small>
+            </span>
+          `;
+
+          button.addEventListener("click", () => {
+            activeContact = contact.id;
+            renderContacts(
+              document.getElementById("searchContact").value
+            );
+            renderChat();
+          });
+
+          list.appendChild(button);
+        });
+    }
+
+    function renderChat() {
+      const contact = contacts.find(c => c.id === activeContact);
+
+      document.getElementById("chatName").textContent = contact.name;
+      document.getElementById("chatAvatar").textContent = contact.icon;
+
+      const list = document.getElementById("messageList");
+      list.replaceChildren();
+
+      const data = loadMessages();
+      const messages = data[activeContact] || [];
+
+      if (messages.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent =
+          "👋 Start a conversation with " + contact.name + "!";
+        list.appendChild(empty);
+        return;
+      }
+
+      messages.forEach(message => {
+        const bubble = document.createElement("div");
+        bubble.className =
+          "bubble " + (message.sender === "me" ? "sent" : "received");
+
+        bubble.textContent = message.text;
+
+        const time = document.createElement("span");
+        time.className = "time";
+        time.textContent = message.time;
+
+        bubble.appendChild(time);
+        list.appendChild(bubble);
+      });
+
+      list.scrollTop = list.scrollHeight;
+    }
+
+    document.getElementById("searchContact")
+      .addEventListener("input", function() {
+        renderContacts(this.value);
+      });
+
+    document.getElementById("messageForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const input = document.getElementById("messageInput");
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        const data = loadMessages();
+
+        if (!data[activeContact]) {
+          data[activeContact] = [];
+        }
+
+        data[activeContact].push({
+          sender: "me",
+          text: text,
+          time: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+        });
+
+        if (saveMessages(data)) {
+          input.value = "";
+          renderChat();
+        }
+      });
+
+    renderContacts();
+    renderChat();
+  </script>
+
+</body>
+</html>
